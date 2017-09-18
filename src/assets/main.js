@@ -4,13 +4,13 @@ let attempt = document.getElementById('attempt');
 function guess() {
     let input = document.getElementById('user-guess');
     //add functionality to guess function here
-    if (answer === '' || attempt === '') {
+    if (answer.value === '' || attempt.value === '') {
         setHiddenFields();
     }
     if (!validateInput(input.value)) {
         return false;
     } else {
-        attempt++;
+        attempt.value++;
     }
     
     if (getResults()) {
@@ -18,7 +18,7 @@ function guess() {
         showAnswer(true);
         showReplay();
     } else {
-        if (attempt >= 10) {
+        if (attempt.value >= 10) {
             setMessage("You Lose! :(");
             showAnswer(false);
             showReplay();
@@ -31,11 +31,11 @@ function guess() {
 //implement new functions here
 function setHiddenFields() {
     var rawNum = Math.floor(Math.random() * 10000);
-    var answer = rawNum.toString();
-    var attempt = 0;
+    var answer.value = rawNum.toString();
+    var attempt.value = 0;
     
-    while (answer.length < 4) {
-        answer = "0" + answer;
+    while (answer.value.length < 4) {
+        answer.value = "0" + answer.value;
     }
 }
 
@@ -60,10 +60,10 @@ function getResults(input) {
     resultsDiv += "</span><div class='col-md-6'>";
     
     for (i = 0; i < 4; i++) {
-        if (input[i] === answer[i]) {
+        if (input[i] === answer.value[i]) {
             resultsDiv += "<span class='glyphicon glyphicon-ok'></span>";
             correctlyGuessed++;
-        } else if (answer.indexOf(input[i]) !== -1) {
+        } else if (answer.value.indexOf(input[i]) !== -1) {
             resultsDiv += "<span class='glyphicon glyphicon-transfer'></span>";
         } else {
             resultsDiv += "<span class='glyphicon glyphicon-remove'></span>";
@@ -83,7 +83,7 @@ function getResults(input) {
 
 function showAnswer(condition) {
     var codeElement = document.getElementById('code')
-    codeElement.innerHTML = answer;
+    codeElement.innerHTML = answer.value;
     
     if (condition) {
         codeElement.className += " success";
