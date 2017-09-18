@@ -4,21 +4,21 @@ let attempt = document.getElementById('attempt');
 function guess() {
     let input = document.getElementById('user-guess');
     //add functionality to guess function here
-    if (answer.value === '' || attempt.value === '') {
+    if (answer === '' || attempt === '') {
         setHiddenFields();
     }
     if (!validateInput(input.value)) {
         return false;
     } else {
-        attempt.value++;
+        attempt++;
     }
     
-    if (getResults()) {
+    if (getResults(input.value)) {
         setMessage("You Win! :)");
         showAnswer(true);
         showReplay();
     } else {
-        if (attempt.value >= 10) {
+        if (attempt >= 10) {
             setMessage("You Lose! :(");
             showAnswer(false);
             showReplay();
@@ -31,11 +31,11 @@ function guess() {
 //implement new functions here
 function setHiddenFields() {
     var rawNum = Math.floor(Math.random() * 10000);
-    var answer.value = rawNum.toString();
-    var attempt.value = 0;
+    var answer = rawNum.toString();
+    var attempt = 0;
     
-    while (answer.value.length < 4) {
-        answer.value = "0" + answer.value;
+    while (answer.length < 4) {
+        answer = "0" + answer;
     }
 }
 
@@ -59,8 +59,8 @@ function getResults(input) {
     resultsDiv += input;
     resultsDiv += "</span><div class='col-md-6'>";
     
-    for (i = 0; i < 4; i++) {
-        if (input[i] === answer.value[i]) {
+    for (var i = 0; i < 4; i++) {
+        if (input[i] === answer[i]) {
             resultsDiv += "<span class='glyphicon glyphicon-ok'></span>";
             correctlyGuessed++;
         } else if (answer.value.indexOf(input[i]) !== -1) {
@@ -82,8 +82,8 @@ function getResults(input) {
 }
 
 function showAnswer(condition) {
-    var codeElement = document.getElementById('code')
-    codeElement.innerHTML = answer.value;
+    var codeElement = document.getElementById('code');
+    codeElement.innerHTML = answer;
     
     if (condition) {
         codeElement.className += " success";
