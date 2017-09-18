@@ -10,7 +10,7 @@ function guess() {
     if (!validateInput(input.value)) {
         return false;
     } else {
-        attempt.value += 1;
+        ++attempt.value;
     }
     
     if (getResults(input.value)) {
@@ -23,7 +23,7 @@ function guess() {
             showAnswer(false);
             showReplay();
         } else {
-            setMessage("'Incorrect, try again.'");
+            setMessage("Incorrect, try again.");
         }
     }
 }
