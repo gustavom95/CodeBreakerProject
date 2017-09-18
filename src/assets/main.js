@@ -4,13 +4,13 @@ let attempt = document.getElementById('attempt');
 function guess() {
     let input = document.getElementById('user-guess');
     //add functionality to guess function here
-    if (answer.value === '' || attempt.value === '') {
+    if (answer.value === '' || attempt === '') {
         setHiddenFields();
     }
     if (!validateInput(input.value)) {
         return false;
     } else {
-        attempt.value++;
+        attempt++;
     }
     
     if (getResults(input.value)) {
@@ -18,7 +18,7 @@ function guess() {
         showAnswer(true);
         showReplay();
     } else {
-        if (attempt.value >= 10) {
+        if (attempt >= 10) {
             setMessage("You Lose! :(");
             showAnswer(false);
             showReplay();
@@ -31,8 +31,8 @@ function guess() {
 //implement new functions here
 function setHiddenFields() {
     var rawNum = Math.floor(Math.random() * 10000);
-    var answer.value = rawNum.toString();
-    var attempt.value = 0;
+    answer.value = rawNum.toString();
+    attempt.value = 0;
     
     while (answer.value.length < 4) {
         answer.value = "0" + answer.value;
