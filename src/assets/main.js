@@ -23,7 +23,7 @@ function guess() {
             showAnswer(false);
             showReplay();
         } else {
-            setMessage("Incorrect, try again");
+            setMessage("'Incorrect, try again.'");
         }
     }
 }
